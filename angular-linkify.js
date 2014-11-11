@@ -30,7 +30,12 @@ angular.module('linkify')
           _text = _text.replace(/(^|\s)*#([a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿñ_-]+)/g, '$1<a href="https://twitter.com/search?q=%23$2" target="_blank">#$2</a>');
         }
 
-        
+        // How Loved
+        if (type === 'howloved') {
+          _text = _text.replace(/(|\s)*@([a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿñ_-]+)/g, '$1<a href="http://www.howloved.com/getLove/$2" target="_blank">@$2</a>');
+          // _text = _text.replace(/(^|\s)*#([a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿñ_-]+)/g, '$1<a href="http://www.howloved.com/getLove/search?q=%23$2" target="_blank">#$2</a>');
+        }
+
         // Github
         if (type === 'github') {
           _text = _text.replace(/(|\s)*@(\w+)/g, '$1<a href="https://github.com/$2" target="_blank">@$2</a>');
@@ -55,6 +60,7 @@ angular.module('linkify')
     
     return {
       twitter: _linkifyAsType('twitter'),
+      howloved: _linkifyAsType('howloved'),
       github: _linkifyAsType('github'),
       normal: _linkifyAsType()
     };
